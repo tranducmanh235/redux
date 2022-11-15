@@ -2,12 +2,17 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Todos from "./components/Todos";
 
+import { Provider } from "react-redux";
+import store from "./store/store";
+
 function App() {
     return (
-        <div className="App">
-            <Navbar />
-            <Todos />
-        </div>
+        <Provider store={store}>
+            <div className="App">
+                <Navbar />
+                <Todos />
+            </div>
+        </Provider>
     );
 }
 

@@ -1,26 +1,10 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import TodoForm from "./TodoForm";
 
-const Todos = () => {
-    const [todos, setTodos] = useState([
-        {
-            id: 1,
-            title: "work 1",
-            completed: false,
-        },
-        {
-            id: 2,
-            title: "work 2",
-            completed: false,
-        },
-        {
-            id: 3,
-            title: "work 3",
-            completed: false,
-        },
-    ]);
-
+const Todos = ({ todos }) => {
     return (
         <div className="todo-list">
             <TodoForm />
@@ -37,4 +21,13 @@ const Todos = () => {
     );
 };
 
-export default Todos;
+// easy to debug
+Todos.propTypes = {
+    todos: PropTypes.array.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+    todos: state.myTodos.todos,
+});
+
+export default connect(mapStateToProps, {})(Todos);
